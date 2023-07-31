@@ -128,7 +128,7 @@ app.get('/search/:text', (req, res) => {
     }
 });
 
-// set up for local Mongo : Uncomment if you want to use mongodb locally
+// set up for local Mongo
 // Uncomment it when using Mongo on EC2
 // function mongoConnect() {
 //     return new Promise((resolve, reject) => {
@@ -151,7 +151,7 @@ function mongoConnect() {
     var mongoURL = process.env.MONGO_URL || 'mongodb://username:password@mongodb:27017/catalogue?tls=true&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false';
     var client = mongoClient.connect(mongoURL,
       {
-        tlsCAFile: `/home/roboshop/global-bundle.pem` //Specify the DocDB; cert to be used, ensure it has to present on server
+        tlsCAFile: `/home/roboshop/rds-combined-ca-bundle.pem` //Specify the DocDB; cert to be used, ensure it has to present on server
     }, (error, client) => {
     if(error) {
         reject(error);
